@@ -1,4 +1,4 @@
-package com.warmwind.warmwindmaster;
+package top.warmwind.warmwindmaster;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

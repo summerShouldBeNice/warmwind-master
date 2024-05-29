@@ -1,4 +1,4 @@
-package com.warmwind.warmwindmaster;
+package top.warmwind.warmwindmaster;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
