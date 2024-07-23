@@ -1,13 +1,13 @@
-package top.warmwind.warmwindmaster;
+package top.warmwind.master;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class WarmwindMasterApplication {
+public class MasterApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(WarmwindMasterApplication.class, args);
+        SpringApplication.run(MasterApplication.class, args);
     }
 
 }
