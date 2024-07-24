@@ -1,7 +1,9 @@
-spring:
-  application:
-    name: warmwind-master
-
+# 端口
 server:
   port: 8888
+
+# 多环境配置
+spring:
+  profiles:
+    active: dev
 

@@ -15,6 +15,11 @@
     <description>warmwind-master</description>
     <properties>
         <java.version>17</java.version>
+        <springdoc.version>2.2.0</springdoc.version>
+        <druid.version>1.2.21</druid.version>
+        <fasetjson2.version>2.0.52</fasetjson2.version>
+        <mybatis-plus-boot3.version>3.5.7</mybatis-plus-boot3.version>
+        <mysql.version>8.3.0</mysql.version>
     </properties>
     <dependencies>
 
@@ -22,6 +27,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <!-- spring-boot-validation -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
 
         <!-- spring-boot-test -->
@@ -38,6 +49,20 @@
             <scope>annotationProcessor</scope>
         </dependency>
 
+        <!--druid-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>${druid.version}</version>
+        </dependency>
+
+        <!-- SpringBoot3.x使用这个库，才能够开启Druid监控网页 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-3-starter</artifactId>
+            <version>${druid.version}</version>
+        </dependency>
+
         <!-- spring-boot-web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -48,21 +73,21 @@
         <dependency>
             <groupId>com.alibaba.fastjson2</groupId>
             <artifactId>fastjson2</artifactId>
-            <version>2.0.52</version>
+            <version>${fasetjson2.version}</version>
         </dependency>
 
         <!-- mybatis-plus-spring-boot3 -->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
-            <version>3.5.7</version>
+            <version>${mybatis-plus-boot3.version}</version>
         </dependency>
 
         <!-- springdoc -->
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-            <version>2.2.0</version>
+            <version>${springdoc.version}</version>
         </dependency>
 
         <!-- spring-boot-redis -->
@@ -71,6 +96,13 @@
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
 
+        <!-- mysql-driver -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>${mysql.version}</version>
+            <scope>runtime</scope>
+        </dependency>
     </dependencies>
 
     <build>
