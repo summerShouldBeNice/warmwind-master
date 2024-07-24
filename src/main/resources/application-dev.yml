@@ -8,3 +8,12 @@ spring:
     password: Qq2693387413@
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
+
+# 日志配置
+logging:
+  level:
+    top.warmwind.master: DEBUG
+    com.baomidou.mybatisplus: DEBUG
+    root: INFO
+  pattern:
+    console: "%red(%d{HH:mm:ss.SSS})|%green(%level)|%magenta(%thread)|%yellow(%logger{32})|%green(line-%line)|%cyan(%X{traceId})|%m%n"

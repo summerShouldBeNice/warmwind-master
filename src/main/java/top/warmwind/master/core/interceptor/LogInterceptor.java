@@ -2,7 +2,7 @@ package top.warmwind.master.core.interceptor;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.jboss.logging.MDC;
+import org.slf4j.MDC;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 /**
@@ -17,10 +17,15 @@ public class LogInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        String traceId = request.getHeader(MDC_TRACE_ID);
-        MDC.put(MDC_TRACE_ID, traceId);
+        String traceIDStr = getMDCTraceId();
+        MDC.put(MDC_TRACE_ID, traceIDStr);
         return true;
     }
+
+    /**
+     * 生成traceId
+     * @return String
+     */
     private String getMDCTraceId() {
         long currentTime = System.nanoTime();
         return String.join("_", MDC_TRACE_ID, String.valueOf(currentTime));
