@@ -1,13 +1,26 @@
 # 开发环境配置
 
+# 端口
+server:
+  port: 8888
+
 # 数据源配置
 spring:
   datasource:
-    url: jdbc:mysql://47.97.80.123:3306/alumni-association?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8
+    url: jdbc:mysql://47.97.80.123:3306/warmwind?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8
     username: root
     password: Qq2693387413@
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
+
+# docs配置
+springdoc:
+  api-docs:
+    enabled: true
+    path: /warmwind/v3/api-docs
+  swagger-ui:
+    enabled: true
+    path: /warmwind/swagger-ui/index.html
 
 # 日志配置
 logging:

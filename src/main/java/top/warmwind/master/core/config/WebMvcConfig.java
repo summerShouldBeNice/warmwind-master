@@ -32,7 +32,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     /**
      * 将LogInterceptor拦截器注册到Spring容器中
-     * @param registry
+     * @param registry 注册器
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {

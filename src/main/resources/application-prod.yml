@@ -6,3 +6,12 @@ spring:
     username: root
     password: Qq2693387413@
     driver-class-name: com.mysql.cj.jdbc.Driver
+
+# 日志配置
+logging:
+  level:
+    top.warmwind.master: ERROR
+    com.baomidou.mybatisplus: ERROR
+    root: WARN
+  pattern:
+    console: "%red(%d{HH:mm:ss.SSS})|%green(%level)|%magenta(%thread)|%yellow(%logger{32})|%green(line-%line)|%cyan(%X{traceId})|%m%n"

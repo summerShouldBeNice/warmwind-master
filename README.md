@@ -1,15 +1,19 @@
-## warmwind framework - personal quick develop framework.
 ## 暖风框架-个人快速开发框架.
 
-### introduce:
 ### 介绍:
 
 > 
 
-### dependencies: reference pom.xml
-### 依赖: 参考pom.xml
+### 依赖: 参考pom.xml.
 
-### speciality:
+### 规范: 代码开发规范.
+
+1. 基类:
+   1. BaseController
+        - 封装了success
+   2. BaseEntity
+   3. BaseParam
+
 ### 特性:
 
 1. 
