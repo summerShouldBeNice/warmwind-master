@@ -6,7 +6,7 @@ package top.warmwind.master.core.constants;
  * @author warmwind
  * @since 2024-07-23 下午11:27
  */
-public class SystemConstants {
+public class SysConstants {
 
     /**
      * token通过header传递的名称

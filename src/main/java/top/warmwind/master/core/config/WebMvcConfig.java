@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import top.warmwind.master.core.constants.SystemConstants;
+import top.warmwind.master.core.constants.SysConstants;
 import top.warmwind.master.core.interceptor.LogInterceptor;
 
 /**
@@ -24,7 +24,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addMapping("/**")
                 .allowedOriginPatterns("*")
                 .allowedHeaders("*")
-                .exposedHeaders(SystemConstants.TOKEN_HEADER_NAME)
+                .exposedHeaders(SysConstants.TOKEN_HEADER_NAME)
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH")
                 .allowCredentials(true)
                 .maxAge(3600);

@@ -6,7 +6,7 @@ import org.slf4j.MDC;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 /**
- * 日志拦截器
+ * 日志拦截器，为每个线程新增一个traceId方便定位异常
  *
  * @author warmwind
  * @since 2024-07-23 下午11:23

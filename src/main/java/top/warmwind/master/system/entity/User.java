@@ -2,13 +2,13 @@ package top.warmwind.master.system.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
 import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.Data;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serial;
-import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -20,7 +20,7 @@ import java.util.List;
 @Data
 @Schema(description = "用户表")
 @TableName("sys_user")
-public class User implements Serializable {
+public class User implements UserDetails {
 
     @Serial
     private static final long serialVersionUID = 1L;
@@ -64,4 +64,29 @@ public class User implements Serializable {
     @Schema(description = "删除标记")
     @TableLogic
     private Integer deleted;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of();
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return UserDetails.super.isAccountNonExpired();
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return UserDetails.super.isAccountNonLocked();
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return UserDetails.super.isCredentialsNonExpired();
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return UserDetails.super.isEnabled();
+    }
 }
