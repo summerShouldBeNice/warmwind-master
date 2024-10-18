@@ -19,6 +19,7 @@
         <druid.version>1.2.21</druid.version>
         <fasetjson2.version>2.0.52</fasetjson2.version>
         <mybatis-plus-boot3.version>3.5.7</mybatis-plus-boot3.version>
+        <fastjson2.extension.spring6>2.0.42</fastjson2.extension.spring6>
     </properties>
     <dependencies>
 
@@ -32,6 +33,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-json</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- spring security -->
@@ -77,6 +84,13 @@
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-3-starter</artifactId>
             <version>${druid.version}</version>
+        </dependency>
+
+        <!-- fastjson2-extension-spring6 -->
+        <dependency>
+            <groupId>com.alibaba.fastjson2</groupId>
+            <artifactId>fastjson2-extension-spring6</artifactId>
+            <version>${fastjson2.extension.spring6}</version>
         </dependency>
 
         <!-- fastjson2 -->
