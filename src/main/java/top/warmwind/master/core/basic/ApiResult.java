@@ -1,6 +1,5 @@
-package top.warmwind.master.core.web;
+package top.warmwind.master.core.basic;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
@@ -13,7 +12,9 @@ import java.io.Serializable;
  * @author warmwind
  * @since 2024-10-18 下午3:53
  */
+@Schema(description = "响应结果")
 public class ApiResult<T> implements Serializable {
+
     @Serial
     private static final long serialVersionUID = 1L;
 

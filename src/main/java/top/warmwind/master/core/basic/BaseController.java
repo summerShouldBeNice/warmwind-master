@@ -1,4 +1,4 @@
-package top.warmwind.master.core.web;
+package top.warmwind.master.core.basic;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
@@ -7,7 +7,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import top.warmwind.master.core.constants.SysConstants;
-import top.warmwind.master.system.entity.User;
+import top.warmwind.master.core.web.PageResult;
+import top.warmwind.master.system.entity.SysUser;
 
 import java.util.List;
 
@@ -21,14 +22,14 @@ public class BaseController {
 
     /**
      * 获取登录的用户信息
-     * @return User
+     * @return SysUser
      */
-    public User getLoginUser() {
+    public SysUser getLoginUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null) {
             Object object = authentication.getPrincipal();
-            if (object instanceof User) {
-                return (User) object;
+            if (object instanceof SysUser) {
+                return (SysUser) object;
             }
         }
         return null;
@@ -39,8 +40,8 @@ public class BaseController {
      * @return userId
      */
     public Integer getLoginUserId() {
-        User loginUser = getLoginUser();
-        return loginUser == null ? null : loginUser.getUserId();
+        SysUser loginSysUser = getLoginUser();
+        return loginSysUser == null ? null : loginSysUser.getId();
     }
 
     /**

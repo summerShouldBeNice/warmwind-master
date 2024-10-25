@@ -5,10 +5,12 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import top.warmwind.master.core.basic.BaseEntity;
 
 import java.io.Serial;
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,15 +20,9 @@ import java.util.List;
  * @since 2024-08-07 下午4:03
  */
 @Data
-@Schema(description = "用户表")
 @TableName("sys_user")
-public class User implements UserDetails {
-
-    @Serial
-    private static final long serialVersionUID = 1L;
-
-    @Schema(description = "用户id")
-    private Integer userId;
+@Schema(description = "系统用户表")
+public class SysUser extends BaseEntity implements UserDetails {
 
     @Schema(description = "用户名")
     private String username;
@@ -43,23 +39,11 @@ public class User implements UserDetails {
     @Schema(description = "邮箱")
     private String email;
 
-    @Schema(description = "邮箱是否验证")
+    @Schema(description = "邮箱是否验证（0否，1是）")
     private Integer emailVerified;
 
     @Schema(description = "用户账号状态")
     private Integer status;
-
-    @Schema(description = "创建人")
-    private Integer createBy;
-
-    @Schema(description = "创建时间")
-    private LocalDateTime createTime;
-
-    @Schema(description = "更新人")
-    private Integer updateBy;
-
-    @Schema(description = "更新时间")
-    private LocalDateTime updateTime;
 
     @Schema(description = "删除标记")
     @TableLogic

@@ -3,5 +3,8 @@ spring:
   profiles:
     active: dev
 
+# 服务器接口版本
+api: /api/v1
+
 
 
