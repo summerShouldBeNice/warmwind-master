@@ -10,7 +10,7 @@ import lombok.Data;
  */
 @Data
 @TableName("sys_user_role")
-@Schema(description = "系统角色权限表")
+@Schema(name = "系统角色权限表")
 public class SysUserRole {
 
     @Schema(name = "主键编号")

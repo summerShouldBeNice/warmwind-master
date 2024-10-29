@@ -1,4 +1,4 @@
-package top.warmwind.master.core.web;
+package top.warmwind.master.core.basic;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import io.swagger.v3.oas.annotations.media.Schema;

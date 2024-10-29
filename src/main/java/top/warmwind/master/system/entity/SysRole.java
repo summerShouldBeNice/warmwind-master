@@ -14,7 +14,7 @@ import java.io.Serializable;
  */
 @Data
 @TableName("sys_user")
-@Schema(description = "系统角色表")
+@Schema(name = "系统角色表")
 public class SysRole extends BaseEntity {
 
     @Schema(name = "角色标识")
@@ -25,6 +25,5 @@ public class SysRole extends BaseEntity {
 
     @Schema(name = "备注")
     private String comments;
-
 
 }

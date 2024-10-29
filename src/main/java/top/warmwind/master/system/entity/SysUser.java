@@ -21,33 +21,29 @@ import java.util.List;
  */
 @Data
 @TableName("sys_user")
-@Schema(description = "系统用户表")
+@Schema(name = "系统用户表")
 public class SysUser extends BaseEntity implements UserDetails {
 
-    @Schema(description = "用户名")
+    @Schema(name = "用户名")
     private String username;
 
-    @Schema(description = "密码")
+    @Schema(name = "密码")
     private String password;
 
-    @Schema(description = "头像")
+    @Schema(name = "头像")
     private String avatar;
 
-    @Schema(description = "手机号")
+    @Schema(name = "手机号")
     private String phone;
 
-    @Schema(description = "邮箱")
+    @Schema(name = "邮箱")
     private String email;
 
-    @Schema(description = "邮箱是否验证（0否，1是）")
+    @Schema(name = "邮箱是否验证（0否，1是）")
     private Integer emailVerified;
 
-    @Schema(description = "用户账号状态")
+    @Schema(name = "用户账号状态")
     private Integer status;
-
-    @Schema(description = "删除标记")
-    @TableLogic
-    private Integer deleted;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
