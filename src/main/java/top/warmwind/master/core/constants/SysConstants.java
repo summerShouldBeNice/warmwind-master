@@ -33,4 +33,18 @@ public class SysConstants {
      */
     public static final String RESULT_ERROR_MSG = "操作失败";
 
+    /**
+     * 请求参数最大长度
+     */
+    public static final int REQUEST_PARAMS_MAX_LENGTH = 1000;
+
+    /**
+     * 响应结果最大长度
+     */
+    public static final int RESULT_MAX_LENGTH = 1000;
+
+    /**
+     * 错误信息最大长度
+     */
+    public static final int ERROR_MAX_LENGTH = 1000;
 }

@@ -1,42 +1,39 @@
-package top.warmwind.master.system.exception;
+package top.warmwind.master.core.exception;
 
 import top.warmwind.master.core.constants.SysConstants;
 
 import java.io.Serial;
 
 /**
- * 业务异常
- *
  * @author warmwind
- * @since 2024-10-18 下午5:20
+ * @since 2024-09-03 下午6:23
  */
-public class BizException extends RuntimeException {
-
+public class EnumValueNotExistException extends RuntimeException {
     @Serial
     private static final long serialVersionUID = 1L;
 
     private Integer code;
 
-    public BizException() {
+    public EnumValueNotExistException() {
         this(SysConstants.RESULT_ERROR_MSG);
     }
 
-    public BizException(String message) {
+    public EnumValueNotExistException(String message) {
         this(SysConstants.RESULT_ERROR_CODE, message);
     }
 
-    public BizException(Integer code, String message) {
+    public EnumValueNotExistException(Integer code, String message) {
         super(message);
         this.code = code;
     }
 
-    public BizException(Integer code, String message, Throwable cause) {
+    public EnumValueNotExistException(Integer code, String message, Throwable cause) {
         super(message, cause);
         this.code = code;
     }
 
-    public BizException(Integer code, String message, Throwable cause,
-                        boolean enableSuppression, boolean writableStackTrace) {
+    public EnumValueNotExistException(Integer code, String message, Throwable cause,
+                             boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
         this.code = code;
     }

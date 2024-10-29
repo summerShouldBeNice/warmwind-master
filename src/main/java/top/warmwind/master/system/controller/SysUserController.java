@@ -3,18 +3,15 @@ package top.warmwind.master.system.controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import top.warmwind.master.core.basic.BaseController;
 
 /**
  * @author warmwind
  * @since 2024-09-03 下午5:28
  */
 @RestController
-@RequestMapping("/usr")
-public class UserController {
+@RequestMapping("/sys/user")
+public class SysUserController extends BaseController {
 
-    @GetMapping("/qjf")
-    public String user() {
-        return "邱俊峰";
-    }
 
 }

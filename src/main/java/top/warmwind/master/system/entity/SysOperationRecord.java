@@ -20,6 +20,7 @@ import java.util.Date;
 @Schema(name = "操作日志表")
 @TableName("sys_operation_record")
 public class SysOperationRecord implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     @Schema(name = "主键id")
@@ -36,16 +37,16 @@ public class SysOperationRecord implements Serializable {
     private String description;
 
     @Schema(name = "请求地址")
-    private String url;
+    private String requestUrl;
 
     @Schema(name = "请求方式")
-    private String requestMethod;
+    private String requestMethodType;
 
     @Schema(name = "调用方法")
-    private String method;
+    private String callingMethod;
 
     @Schema(name = "请求参数")
-    private String params;
+    private String requestParams;
 
     @Schema(name = "返回结果")
     private String result;

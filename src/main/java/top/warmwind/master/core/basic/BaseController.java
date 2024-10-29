@@ -21,30 +21,6 @@ import java.util.List;
 public class BaseController {
 
     /**
-     * 获取登录的用户信息
-     * @return SysUser
-     */
-    public SysUser getLoginUser() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null) {
-            Object object = authentication.getPrincipal();
-            if (object instanceof SysUser) {
-                return (SysUser) object;
-            }
-        }
-        return null;
-    }
-
-    /**
-     * 获取当前登录的userId
-     * @return userId
-     */
-    public Integer getLoginUserId() {
-        SysUser loginSysUser = getLoginUser();
-        return loginSysUser == null ? null : loginSysUser.getId();
-    }
-
-    /**
      * 返回成功
      * @return ApiResult
      */
@@ -148,7 +124,5 @@ public class BaseController {
     public void initBinder(WebDataBinder binder) {
         binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
     }
-
-
     
 }

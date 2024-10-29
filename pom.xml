@@ -20,6 +20,7 @@
         <fasetjson2.version>2.0.52</fasetjson2.version>
         <mybatis-plus-boot3.version>3.5.7</mybatis-plus-boot3.version>
         <fastjson2.extension.spring6>2.0.42</fastjson2.extension.spring6>
+        <hutool.version>5.8.32</hutool.version>
     </properties>
     <dependencies>
 
@@ -126,6 +127,13 @@
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
             <scope>runtime</scope>
+        </dependency>
+
+        <!-- hutool工具 -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool.version}</version>
         </dependency>
     </dependencies>
 

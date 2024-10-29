@@ -1,4 +1,4 @@
-package top.warmwind.master.system.exception;
+package top.warmwind.master.core.exception;
 
 /**
  * @author warmwind
