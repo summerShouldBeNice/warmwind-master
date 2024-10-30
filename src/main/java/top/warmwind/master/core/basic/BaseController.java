@@ -2,13 +2,11 @@ package top.warmwind.master.core.basic;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import top.warmwind.master.core.constants.SysConstants;
+import top.warmwind.master.core.web.ApiResult;
 import top.warmwind.master.core.web.PageResult;
-import top.warmwind.master.system.entity.SysUser;
 
 import java.util.List;
 

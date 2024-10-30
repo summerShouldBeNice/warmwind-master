@@ -7,4 +7,9 @@ package top.warmwind.master.core.constants;
  * @since 2024-09-03 下午5:11
  */
 public class SysRedisConstants {
+
+    /**
+     * 防抖redis键常量
+     */
+    public static final String DEBOUNCE = "debounce:";
 }

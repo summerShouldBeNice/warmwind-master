@@ -1,7 +1,6 @@
-package top.warmwind.master.core.basic;
+package top.warmwind.master.core.web;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.tags.Tag;
 
 import java.io.Serial;
 import java.io.Serializable;

@@ -1,10 +1,8 @@
 package top.warmwind.master.core.aspect;
 
-import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.servlet.JakartaServletUtil;
-import cn.hutool.extra.servlet.ServletUtil;
 import cn.hutool.http.useragent.UserAgent;
 import cn.hutool.http.useragent.UserAgentUtil;
 import com.alibaba.fastjson2.JSON;
@@ -13,7 +11,6 @@ import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -30,8 +27,6 @@ import top.warmwind.master.system.service.SysOperationRecordService;
 
 import java.lang.reflect.Method;
 import java.util.Map;
-
-import static cn.hutool.extra.servlet.JakartaServletUtil.getClientIPByHeader;
 
 /**
  * 系统操作记录切面
