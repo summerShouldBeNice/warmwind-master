@@ -13,8 +13,9 @@ import java.util.List;
  * @author warmwind
  * @since 2024-10-18 下午5:55
  */
-@Schema(description = "分页结果")
+@Schema(name = "分页结果")
 public class PageResult<T> implements Serializable {
+
     @Serial
     private static final long serialVersionUID = 1L;
 

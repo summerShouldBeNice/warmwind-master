@@ -3,6 +3,7 @@ package top.warmwind.master.core.redis;
 import jakarta.annotation.Resource;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +18,12 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class RedisLockService {
 
-    @Resource
     private RedissonClient redissonClient;
+
+    @Autowired
+    public RedisLockService(RedissonClient redissonClient) {
+        this.redissonClient = redissonClient;
+    }
 
     /**
      * 获取锁

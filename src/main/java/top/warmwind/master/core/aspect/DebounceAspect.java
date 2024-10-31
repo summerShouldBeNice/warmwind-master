@@ -11,7 +11,9 @@ import org.springframework.util.ReflectionUtils;
 import top.warmwind.master.core.annotation.Debounce;
 import top.warmwind.master.core.annotation.DebounceParam;
 import top.warmwind.master.core.constants.SysRedisConstants;
+import top.warmwind.master.core.enums.DebounceMode;
 import top.warmwind.master.core.redis.RedisLockService;
+import top.warmwind.master.core.utils.SecurityUtil;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -70,6 +72,9 @@ public class DebounceAspect {
         final Parameter[] parameters = method.getParameters();
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < parameters.length; i++) {
+            if (DebounceMode.USER.getValue().equals(debounce.mode().getValue())) {
+                sb.append(SecurityUtil.getLoginUserId());
+            }
             final DebounceParam debounceParam = parameters[i].getAnnotation(DebounceParam.class);
             if (Objects.nonNull(debounceParam)) {
                 sb.append(debounce.delimiter()).append(args[i]);

@@ -16,6 +16,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -38,15 +39,18 @@ import java.util.Map;
 @Component
 public class OperationRecordAspect {
 
-    @Resource
     private SysOperationRecordService operationRecordService;
+
+    @Autowired
+    public OperationRecordAspect(SysOperationRecordService operationRecordService) {
+        this.operationRecordService = operationRecordService;
+    }
 
     private final ThreadLocal<Long> startTime = new ThreadLocal<>();
 
     @Pointcut("@annotation(top.warmwind.master.core.annotation.OperationRecord)")
     public void operationRecord(){
     }
-
 
     @Before("operationRecord()")
     public void doBefore(JoinPoint joinPoint){

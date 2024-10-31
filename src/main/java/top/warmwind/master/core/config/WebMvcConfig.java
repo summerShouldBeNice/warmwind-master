@@ -25,9 +25,6 @@ import java.util.List;
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 
-    @Resource
-    private SysConfig sysConfig;
-
     /**
      * 支持跨域访问
      */

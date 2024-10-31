@@ -8,10 +8,13 @@ import java.io.Serial;
 import java.io.Serializable;
 
 /**
+ * param基类
+ *
  * @author warmwind
  * @since 2024-10-18 下午6:23
  */
 @Data
+@Schema(name = "param基类")
 public class BaseParam implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;

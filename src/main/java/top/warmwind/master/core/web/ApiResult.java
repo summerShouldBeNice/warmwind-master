@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @author warmwind
  * @since 2024-10-18 下午3:53
  */
-@Schema(description = "响应结果")
+@Schema(name = "响应结果")
 public class ApiResult<T> implements Serializable {
 
     @Serial

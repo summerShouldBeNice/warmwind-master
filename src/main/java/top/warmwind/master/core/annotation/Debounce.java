@@ -1,5 +1,6 @@
 package top.warmwind.master.core.annotation;
 
+import top.warmwind.master.core.enums.DebounceMode;
 import top.warmwind.master.core.exception.BizException;
 
 import java.lang.annotation.*;
@@ -26,14 +27,20 @@ public @interface Debounce {
     String delimiter() default "&";
 
     /**
+     * 防抖模式
+     * @return
+     */
+    DebounceMode mode() default DebounceMode.ALL;
+
+    /**
      * 等待时间
      */
-    long waitTime() default 5000; // 毫秒
+    long waitTime() default 5000;
 
     /**
      * 租约时间
      */
-    long leaseTime() default 10000; // 毫秒
+    long leaseTime() default 10000;
 
     /**
      * 时间单位
