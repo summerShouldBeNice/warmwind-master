@@ -1,7 +1,6 @@
 package top.warmwind.master.core.web;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import org.springframework.security.core.parameters.P;
 
 import java.io.Serial;
 import java.io.Serializable;

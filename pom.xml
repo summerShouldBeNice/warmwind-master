@@ -23,6 +23,9 @@
         <hutool.version>5.8.32</hutool.version>
         <redission.version>3.37.0</redission.version>
         <easy.captcha.version>2.2.4</easy.captcha.version>
+        <jjwt.api.version>0.12.6</jjwt.api.version>
+        <jjwt.impl.version>0.12.6</jjwt.impl.version>
+        <jjwt.jackson.version>0.12.6</jjwt.jackson.version>
     </properties>
     <dependencies>
 
@@ -144,6 +147,25 @@
             <groupId>com.pig4cloud.plugin</groupId>
             <artifactId>captcha-spring-boot-starter</artifactId>
             <version>${easy.captcha.version}</version>
+        </dependency>
+
+        <!-- jjwt -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>${jjwt.api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>${jjwt.impl.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>
+            <version>${jjwt.jackson.version}</version>
+            <scope>runtime</scope>
         </dependency>
     </dependencies>
 

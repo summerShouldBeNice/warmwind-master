@@ -10,5 +10,25 @@ spring:
 # 服务器接口版本
 api: /api/v1
 
+# Mybatis-plus配置
+mybatis-plus:
+  mapper-locations: classpath*:top/warmwind/**/Mapper.xml
+  # 扫描枚举类
+  type-enums-package: com.eleadmin.module.*.*.enums;
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: true
+  global-config:
+    :banner: false
+    db-config:
+      id-type: auto
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+# 框架配置
+config:
+  issuer: wawrmwind
+  base64-encoded-key: 0als50ytKmHDZdhNal2+7tLapzQ0XBbf5MwKe09LoQI=
+
 
 

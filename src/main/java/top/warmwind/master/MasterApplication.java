@@ -5,10 +5,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import top.warmwind.master.core.config.SysConfig;
+import top.warmwind.master.core.config.SysConfigProperties;
 
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
-@EnableConfigurationProperties(SysConfig.class)
+@EnableConfigurationProperties(SysConfigProperties.class)
 @MapperScan("top.warmwind.**.mapper")
 public class MasterApplication {
 

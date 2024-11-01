@@ -14,6 +14,16 @@ public class SysConstants {
     public static final String TOKEN_HEADER_NAME = "Authorization";
 
     /**
+     * token通过参数传递的名称
+     */
+    public static final String TOKEN_PARAM_NAME = "access_token";
+
+    /**
+     * token认证类型
+     */
+    public static final String TOKEN_TYPE = "Bearer";
+
+    /**
      * 响应成功码
      */
     public static final int RESULT_SUCCESS_CODE = 200;

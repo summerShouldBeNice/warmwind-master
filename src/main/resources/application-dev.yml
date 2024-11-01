@@ -12,6 +12,11 @@ spring:
     password: warmwind666centos
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      database: 0
 
 # docs配置
 springdoc:

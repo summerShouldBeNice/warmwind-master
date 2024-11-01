@@ -7,17 +7,17 @@ import top.warmwind.master.core.exception.EnumValueNotExistException;
 import java.util.Arrays;
 
 /**
- * 系统用户账号状态枚举
+ * 系统用户账号邮箱验证状态枚举
  *
  * @author warmwind
- * @since 2024-09-03 下午6:19
+ * @since 2024-11-01 下午6:21
  */
-public enum SysUserStatus {
+public enum EmailVerifyStatus {
 
-    /** 正常 */
-    NORMAL(0, "正常"),
-    /** 锁定 */
-    LOCKED(1, "已锁定");
+    /** 未验证 */
+    UNVERIFIED(0, "未验证"),
+    /** 已验证 */
+    VERIFIED(1, "已验证");
 
     @EnumValue
     private final Integer value;
@@ -33,20 +33,20 @@ public enum SysUserStatus {
         return label;
     }
 
-    SysUserStatus(Integer value, String label) {
+    EmailVerifyStatus(Integer value, String label) {
         this.value = value;
         this.label = label;
     }
 
-    public static SysUserStatus getByValue(String value) {
-        return Arrays.stream(SysUserStatus.values())
+    public static EmailVerifyStatus getByValue(String value) {
+        return Arrays.stream(EmailVerifyStatus.values())
                 .filter(item -> item.getValue().equals(value))
                 .findFirst()
                 .orElseThrow(() -> new EnumValueNotExistException("枚举值不存在"));
     }
 
-    public static SysUserStatus getByLabel(String label) {
-        return Arrays.stream(SysUserStatus.values())
+    public static EmailVerifyStatus getByLabel(String label) {
+        return Arrays.stream(EmailVerifyStatus.values())
                 .filter(item -> item.getLabel().equals(label))
                 .findFirst()
                 .orElseThrow(() -> new EnumValueNotExistException("枚举标签不存在"));

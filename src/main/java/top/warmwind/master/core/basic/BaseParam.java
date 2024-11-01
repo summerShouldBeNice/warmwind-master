@@ -19,11 +19,9 @@ public class BaseParam implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    @TableField(exist = false)
     @Schema(name = "分页查询页码")
     private Long page;
 
-    @TableField(exist = false)
     @Schema(name = "分页查询每页数量")
     private Long limit;
 }

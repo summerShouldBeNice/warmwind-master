@@ -12,5 +12,4 @@ import top.warmwind.master.system.entity.SysOperationRecord;
  */
 @Mapper
 public interface SysOperationRecordMapper extends BaseMapper<SysOperationRecord> {
-
 }
