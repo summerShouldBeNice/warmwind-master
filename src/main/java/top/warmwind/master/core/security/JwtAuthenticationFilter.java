@@ -10,9 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import top.warmwind.master.core.config.SysConfigProperties;
+import top.warmwind.master.core.exception.AccountRetrievalException;
 import top.warmwind.master.core.utils.JwtSubject;
 import top.warmwind.master.core.utils.JwtUtil;
 import top.warmwind.master.system.entity.SysUser;
+import top.warmwind.master.system.enums.AccountStatus;
 import top.warmwind.master.system.service.SysUserService;
 
 import java.io.IOException;
@@ -42,7 +44,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             Claims claims = JwtUtil.parseToken(accessToken, sysConfigProperties.getBase64EncodedKey());
             JwtSubject jwtSubject = JwtUtil.getJwtSubject(claims, JwtSubject.class);
             SysUser user = sysUserService.getSysUserByUsername(jwtSubject.getUsername());
+            if (!AccountStatus.LOCKED.getValue().equals(user.getAccountStatus().getValue())) {
+                throw new AccountRetrievalException("账户已被锁定");
+            }
         }
-
+        filterChain.doFilter(request, response);
     }
 }

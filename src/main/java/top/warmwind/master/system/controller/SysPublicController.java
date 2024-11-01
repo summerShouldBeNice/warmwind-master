@@ -7,12 +7,16 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import top.warmwind.master.core.basic.BaseController;
 import top.warmwind.master.core.web.ApiResult;
+import top.warmwind.master.system.result.CaptchaResult;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * 系统公开接口
@@ -25,17 +29,26 @@ import top.warmwind.master.core.web.ApiResult;
 @RequestMapping("/api/sys/public")
 public class SysPublicController extends BaseController {
 
-    private RedissonClient redissonClient;
+    private StringRedisTemplate stringRedisTemplate;
+
+    @Autowired
+    private SysPublicController(StringRedisTemplate stringRedisTemplate) {
+        this.stringRedisTemplate = stringRedisTemplate;
+    }
 
     @Operation(summary = "图形验证码")
     @GetMapping("/captcha/{key}")
     public ApiResult<?> captcha(@PathVariable("key") String key) {
         String today = DatePattern.PURE_DATE_FORMAT.format(new DateTime());
         SpecCaptcha specCaptcha = new SpecCaptcha(130, 48, 5);
-        // timedCache.put(today + key, specCaptcha.text().toLowerCase());
-        // timedCache.schedulePrune(5);
-        // return success(new CaptchaResult(specCaptcha.toBase64()));
-        return null;
+        stringRedisTemplate.opsForValue().set(today + key, specCaptcha.text().toLowerCase(), 5, TimeUnit.MINUTES);
+        return success(new CaptchaResult(specCaptcha.toBase64()));
+    }
+
+    @Operation(summary = "测试接口")
+    @GetMapping("/test")
+    public ApiResult<?> test() {
+        return success("测试接口");
     }
 
 }

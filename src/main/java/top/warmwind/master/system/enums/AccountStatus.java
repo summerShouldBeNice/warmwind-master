@@ -12,7 +12,7 @@ import java.util.Arrays;
  * @author warmwind
  * @since 2024-09-03 下午6:19
  */
-public enum SysUserStatus {
+public enum AccountStatus {
 
     /** 正常 */
     NORMAL(0, "正常"),
@@ -33,20 +33,20 @@ public enum SysUserStatus {
         return label;
     }
 
-    SysUserStatus(Integer value, String label) {
+    AccountStatus(Integer value, String label) {
         this.value = value;
         this.label = label;
     }
 
-    public static SysUserStatus getByValue(String value) {
-        return Arrays.stream(SysUserStatus.values())
+    public static AccountStatus getByValue(String value) {
+        return Arrays.stream(AccountStatus.values())
                 .filter(item -> item.getValue().equals(value))
                 .findFirst()
                 .orElseThrow(() -> new EnumValueNotExistException("枚举值不存在"));
     }
 
-    public static SysUserStatus getByLabel(String label) {
-        return Arrays.stream(SysUserStatus.values())
+    public static AccountStatus getByLabel(String label) {
+        return Arrays.stream(AccountStatus.values())
                 .filter(item -> item.getLabel().equals(label))
                 .findFirst()
                 .orElseThrow(() -> new EnumValueNotExistException("枚举标签不存在"));

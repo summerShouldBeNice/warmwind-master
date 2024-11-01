@@ -32,7 +32,7 @@ public class JwtUtil <T extends JwtSubject> {
      */
     public static String getAccessToken(HttpServletRequest request) {
         String accessToken = JakartaServletUtil.getHeaderIgnoreCase(request, SysConstants.TOKEN_HEADER_NAME);
-        if (StrUtil.isBlank(accessToken)) {
+        if (StrUtil.isNotBlank(accessToken)) {
             if (accessToken.startsWith(SysConstants.TOKEN_TYPE)) {
                 accessToken = StrUtil.removePrefix(accessToken, SysConstants.TOKEN_TYPE).trim();
             }

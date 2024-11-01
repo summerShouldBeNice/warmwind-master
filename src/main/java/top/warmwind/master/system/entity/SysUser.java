@@ -6,12 +6,9 @@ import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import top.warmwind.master.core.basic.BaseEntity;
-import top.warmwind.master.system.enums.SysUserStatus;
+import top.warmwind.master.system.enums.AccountStatus;
 
-import java.io.Serial;
-import java.time.LocalDateTime;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -44,7 +41,7 @@ public class SysUser extends BaseEntity implements UserDetails {
     private Integer emailVerifyStatus;
 
     @Schema(name = "用户账号状态")
-    private SysUserStatus accountStatus;
+    private AccountStatus accountStatus;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -58,7 +55,7 @@ public class SysUser extends BaseEntity implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return SysUserStatus.NORMAL.equals(accountStatus);
+        return AccountStatus.NORMAL.equals(accountStatus);
     }
 
     @Override

@@ -3,7 +3,6 @@ package top.warmwind.master.core.enums;
 import com.baomidou.mybatisplus.annotation.EnumValue;
 import com.fasterxml.jackson.annotation.JsonValue;
 import top.warmwind.master.core.exception.EnumValueNotExistException;
-import top.warmwind.master.system.enums.SysUserStatus;
 
 import java.util.Arrays;
 
