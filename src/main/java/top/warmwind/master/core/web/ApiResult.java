@@ -11,22 +11,22 @@ import java.io.Serializable;
  * @author warmwind
  * @since 2024-10-18 下午3:53
  */
-@Schema(name = "响应结果")
+@Schema(description = "响应结果")
 public class ApiResult<T> implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
 
-    @Schema(name = "状态码")
+    @Schema(description = "状态码")
     private Integer code;
 
-    @Schema(name = "状态信息")
+    @Schema(description = "状态信息")
     private String message;
 
-    @Schema(name = "返回数据")
+    @Schema(description = "返回数据")
     private T data;
 
-    @Schema(name = "错误信息")
+    @Schema(description = "错误信息")
     private String error;
 
     public ApiResult() {

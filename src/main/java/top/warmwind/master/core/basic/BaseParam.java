@@ -14,14 +14,14 @@ import java.io.Serializable;
  * @since 2024-10-18 下午6:23
  */
 @Data
-@Schema(name = "param基类")
+@Schema(description = "param基类")
 public class BaseParam implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    @Schema(name = "分页查询页码")
+    @Schema(description = "分页查询页码")
     private Long page;
 
-    @Schema(name = "分页查询每页数量")
+    @Schema(description = "分页查询每页数量")
     private Long limit;
 }

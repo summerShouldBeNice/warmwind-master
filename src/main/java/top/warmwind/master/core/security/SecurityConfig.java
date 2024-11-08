@@ -32,16 +32,18 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-        http.securityMatcher("/api/**")
+        http.csrf(csrf -> csrf.disable());
+        http.cors(cors -> cors.disable());
+        http.securityMatcher("/api/v1/**")
                 .authorizeHttpRequests(authorization -> {
                     authorization.requestMatchers(HttpMethod.OPTIONS, "/**")
                             .permitAll()
-                            .requestMatchers("/api/sys/public/**")
+                            .requestMatchers("/api/v1/sys/**")
                             .permitAll()
                             .requestMatchers("/test")
                             .permitAll()
                             .anyRequest()
-                            .authenticated()    ;
+                            .authenticated();
                 });
         return http.build();
     }

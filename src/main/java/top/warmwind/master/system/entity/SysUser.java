@@ -19,28 +19,34 @@ import java.util.List;
  */
 @Data
 @TableName("sys_user")
-@Schema(name = "系统用户表")
+@Schema(description = "系统用户表")
 public class SysUser extends BaseEntity implements UserDetails {
 
-    @Schema(name = "用户名")
+    @Schema(description = "用户名")
     private String username;
 
-    @Schema(name = "密码")
+    @Schema(description = "用户昵称")
+    private String nickname;
+
+    @Schema(description = "密码")
     private String password;
 
-    @Schema(name = "头像")
+    @Schema(description = "头像")
     private String avatar;
 
-    @Schema(name = "手机号")
+    @Schema(description = "性别")
+    private Integer sex;
+
+    @Schema(description = "手机号")
     private String phone;
 
-    @Schema(name = "邮箱")
+    @Schema(description = "邮箱")
     private String email;
 
-    @Schema(name = "邮箱验证状态")
+    @Schema(description = "邮箱验证状态")
     private Integer emailVerifyStatus;
 
-    @Schema(name = "用户账号状态")
+    @Schema(description = "用户账号状态")
     private AccountStatus accountStatus;
 
     @Override

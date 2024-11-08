@@ -1,8 +1,6 @@
 package top.warmwind.master.core.basic;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.baomidou.mybatisplus.annotation.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
@@ -17,28 +15,30 @@ import java.util.Date;
  * @since 2024-10-18 下午6:05
  */
 @Data
-@Schema(name = "entity基类")
+@Schema(description = "entity基类")
 public class BaseEntity implements Serializable{
 
     @Serial
     private static final long serialVersionUID = 1L;
 
-    @Schema(name = "主键id")
+    @Schema(description = "主键id")
     private Integer id;
 
-    @Schema(name = "创建人")
+    @Schema(description = "创建人")
+    @TableField(fill = FieldFill.INSERT)
     private Integer createBy;
 
-    @Schema(name = "创建时间")
+    @Schema(description = "创建时间")
     private Date createTime;
 
-    @Schema(name = "更新人")
+    @Schema(description = "更新人")
+    @TableField(fill = FieldFill.INSERT)
     private Integer updateBy;
 
-    @Schema(name = "更新时间")
+    @Schema(description = "更新时间")
     private Date updateTime;
 
-    @Schema(name = "删除标记 0否 1是")
+    @Schema(description = "删除标记 0否 1是")
     @TableLogic
     private Integer isDeleted;
 

@@ -12,16 +12,16 @@ import java.util.List;
  * @author warmwind
  * @since 2024-10-18 下午5:55
  */
-@Schema(name = "分页结果")
+@Schema(description = "分页结果")
 public class PageResult<T> implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
 
-    @Schema(name = "当前页数据")
+    @Schema(description = "当前页数据")
     private List<T> list;
 
-    @Schema(name = "总数量")
+    @Schema(description = "总数量")
     private Long total;
 
     public PageResult() {}

@@ -12,9 +12,9 @@ api: /api/v1
 
 # Mybatis-plus配置
 mybatis-plus:
-  mapper-locations: classpath*:top/warmwind/**/Mapper.xml
+  mapper-locations: classpath*:top/warmwind/master/**/*Mapper.xml
   # 扫描枚举类
-  type-enums-package: com.eleadmin.module.*.*.enums;
+  type-enums-package: top.warmwind.master.*.*.enums;
   configuration:
     map-underscore-to-camel-case: true
     cache-enabled: true

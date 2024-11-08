@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import top.warmwind.master.core.exception.AccountRetrievalException;
 import top.warmwind.master.system.entity.SysRole;
@@ -29,9 +30,12 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
 
     private SysRoleService sysRoleService;
 
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
     @Autowired
     public SysUserServiceImpl(SysRoleService sysRoleService) {
         this.sysRoleService = sysRoleService;
+        this.bCryptPasswordEncoder = new BCryptPasswordEncoder();
     }
 
     @Override
@@ -45,8 +49,12 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
         if (Objects.isNull(sysUser)) {
             throw new AccountRetrievalException("用户不存在");
         }
-        SysRole sysRole = sysRoleService.selectByUserId(sysUser.getId());
-        return null;
+        return sysUser;
+    }
+
+    @Override
+    public boolean comparePassword(String dbPassword, String inputPassword) {
+        return bCryptPasswordEncoder.matches(inputPassword, dbPassword);
     }
 
     @Override

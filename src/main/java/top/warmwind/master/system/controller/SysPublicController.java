@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import top.warmwind.master.core.basic.BaseController;
+import top.warmwind.master.core.constants.SysRedisConstants;
 import top.warmwind.master.core.web.ApiResult;
 import top.warmwind.master.system.result.CaptchaResult;
 
@@ -26,7 +27,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Tag(name = "公共接口", description = "不用登录就能访问的接口")
 @RestController
-@RequestMapping("/api/sys/public")
+@RequestMapping("${api}/sys/public")
 public class SysPublicController extends BaseController {
 
     private StringRedisTemplate stringRedisTemplate;
@@ -41,14 +42,8 @@ public class SysPublicController extends BaseController {
     public ApiResult<?> captcha(@PathVariable("key") String key) {
         String today = DatePattern.PURE_DATE_FORMAT.format(new DateTime());
         SpecCaptcha specCaptcha = new SpecCaptcha(130, 48, 5);
-        stringRedisTemplate.opsForValue().set(today + key, specCaptcha.text().toLowerCase(), 5, TimeUnit.MINUTES);
+        stringRedisTemplate.opsForValue().set(SysRedisConstants.LOGIN_CAPTCHA_VERIFY_CODE + today + key, specCaptcha.text().toLowerCase(), 5, TimeUnit.MINUTES);
         return success(new CaptchaResult(specCaptcha.toBase64()));
-    }
-
-    @Operation(summary = "测试接口")
-    @GetMapping("/test")
-    public ApiResult<?> test() {
-        return success("测试接口");
     }
 
 }

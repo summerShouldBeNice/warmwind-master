@@ -17,65 +17,65 @@ import java.util.Date;
  * @since 2024-10-28 下午11:40
  */
 @Data
-@Schema(name = "操作日志表")
+@Schema(description = "操作日志表")
 @TableName("sys_operation_record")
 public class SysOperationRecord implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Schema(name = "主键id")
+    @Schema(description = "主键id")
     @TableId(type = IdType.AUTO)
     private Integer id;
 
-    @Schema(name = "用户id")
+    @Schema(description = "用户id")
     private Integer userId;
 
-    @Schema(name = "操作模块")
+    @Schema(description = "操作模块")
     private String module;
 
-    @Schema(name = "操作功能")
+    @Schema(description = "操作功能")
     private String description;
 
-    @Schema(name = "请求地址")
+    @Schema(description = "请求地址")
     private String requestUrl;
 
-    @Schema(name = "请求方式")
+    @Schema(description = "请求方式")
     private String requestMethodType;
 
-    @Schema(name = "调用方法")
+    @Schema(description = "调用方法")
     private String callingMethod;
 
-    @Schema(name = "请求参数")
+    @Schema(description = "请求参数")
     private String requestParams;
 
-    @Schema(name = "返回结果")
+    @Schema(description = "返回结果")
     private String result;
 
-    @Schema(name = "异常信息")
+    @Schema(description = "异常信息")
     private String error;
 
-    @Schema(name = "备注")
+    @Schema(description = "备注")
     private String comments;
 
-    @Schema(name = "消耗时间, 单位毫秒")
+    @Schema(description = "消耗时间, 单位毫秒")
     private Long spendTime;
 
-    @Schema(name = "操作系统")
+    @Schema(description = "操作系统")
     private String os;
 
-    @Schema(name = "设备名称")
+    @Schema(description = "设备名称")
     private String device;
 
-    @Schema(name = "浏览器类型")
+    @Schema(description = "浏览器类型")
     private String browser;
 
-    @Schema(name = "ip地址")
+    @Schema(description = "ip地址")
     private String ip;
 
-    @Schema(name = "状态, 0成功, 1异常")
+    @Schema(description = "状态, 0成功, 1异常")
     private Integer status;
 
-    @Schema(name = "操作时间")
+    @Schema(description = "操作时间")
     private Date createTime;
 
 }

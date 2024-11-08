@@ -17,12 +17,12 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Schema(name = "验证码返回结果")
+@Schema(description = "验证码返回结果")
 public class CaptchaResult implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
 
-    @Schema(name = "图形验证码base64数据")
+    @Schema(description = "图形验证码base64数据")
     private String base64;
 }

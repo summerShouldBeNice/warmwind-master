@@ -20,4 +20,13 @@ public interface SysUserService extends IService<SysUser>, UserDetailsService {
      * @return SysUser
      */
     SysUser getSysUserByUsername(String username);
+
+    /**
+     * 比较目标密码和源密码是否一致
+     *
+     * @param originPassword 源密码
+     * @param targetPassword 目标密码
+     * @return 是否一致
+     */
+    boolean comparePassword(String originPassword, String targetPassword);
 }

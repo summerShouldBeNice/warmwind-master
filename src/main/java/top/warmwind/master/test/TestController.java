@@ -15,7 +15,8 @@ import java.util.Date;
 @RestController
 @RequestMapping("/test")
 @Tag(name = "测试", description = "测试接口")
-public class TestController {
+public class
+TestController {
 
     @GetMapping("/t1")
     public Date test() {

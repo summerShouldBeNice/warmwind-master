@@ -3,16 +3,29 @@ package top.warmwind.master.system.controller;
 import cn.hutool.core.date.DatePattern;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.log.Log;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
 import top.warmwind.master.core.basic.BaseController;
+import top.warmwind.master.core.config.SysConfigProperties;
+import top.warmwind.master.core.constants.SysRedisConstants;
+import top.warmwind.master.core.utils.JwtSubject;
+import top.warmwind.master.core.utils.JwtUtil;
 import top.warmwind.master.core.web.ApiResult;
 import top.warmwind.master.system.entity.SysUser;
+import top.warmwind.master.system.enums.AccountStatus;
+import top.warmwind.master.system.enums.LoginType;
 import top.warmwind.master.system.param.SysLoginParam;
+import top.warmwind.master.system.result.LoginResult;
+import top.warmwind.master.system.service.SysLoginRecordService;
+import top.warmwind.master.system.service.SysUserService;
 
 /**
  * @author warmwind
@@ -20,64 +33,62 @@ import top.warmwind.master.system.param.SysLoginParam;
  */
 @Tag(name = "系统认证接口", description = "系统登录注册认证接口")
 @RestController
-@RequestMapping("${api}")
+@RequestMapping("/api/v1/sys/auth")
 public class SysAuthController extends BaseController {
 
     @Value("${spring.profiles.active}")
     private String profile;
 
+    private StringRedisTemplate stringRedisTemplate;
+
+    private SysUserService sysUserService;
+
+    private SysConfigProperties sysConfigProperties;
+
+    private SysLoginRecordService sysLoginRecordService;
+
+    @Autowired
+    private SysAuthController(StringRedisTemplate stringRedisTemplate, SysUserService sysUserService, SysConfigProperties sysConfigProperties, SysLoginRecordService sysLoginRecordService) {
+        this.stringRedisTemplate = stringRedisTemplate;
+        this.sysUserService = sysUserService;
+        this.sysConfigProperties = sysConfigProperties;
+        this.sysLoginRecordService = sysLoginRecordService;
+    }
+
     @Operation(summary = "用户登录")
     @PostMapping("/login")
     public ApiResult<?> login(@RequestBody SysLoginParam param, HttpServletRequest request) {
-        // String today = DatePattern.PURE_DATE_FORMAT.format(new DateTime());
-        // String verifyCode = timedCache.get(today + param.getCodeKey(), false);
-        // if (StrUtil.isBlank(verifyCode)) {
-        //     String message = "验证码已过期";
-        //     return fail(message, null);
-        // }
-        // if (!verifyCode.equalsIgnoreCase(param.getCode())) {
-        //     String message = "验证码错误";
-        //     return fail(message, null);
-        // }
-        //
-        // String username = param.getUsername();
-        // Integer tenantId = param.getTenantId();
-        // User user = userService.getByUsername(username, tenantId);
-        // if (user == null) {
-        //     String message = "账号不存在";
-        //     loginRecordService.saveAsync(username, LoginRecord.TYPE_ERROR, message, tenantId, request);
-        //     return fail(message, null);
-        // }
-        // if (SystemConstants.USER_STATUS_FAIL.equals(user.getStatus())) {
-        //     String message = "账户已被停用，如要开启，请联系管理员";
-        //     loginRecordService.saveAsync(username, LoginRecord.TYPE_ERROR, message, tenantId, request);
-        //     return fail(message, null);
-        // }
-        // if (!userService.comparePassword(user.getPassword(), param.getPassword())) {
-        //     String message = "密码错误";
-        //     loginRecordService.saveAsync(username, LoginRecord.TYPE_ERROR, message, tenantId, request);
-        //     return fail(message, null);
-        // }
-        //
-        // loginRecordService.saveAsync(username, LoginRecord.TYPE_LOGIN, null, tenantId, request);
-        //
-        //
-        // // 登录参数有OPENID并且登录账户没有绑定OPENID时 为登录用户绑定OPENID
-        // String openId = param.getOpenId();
-        // if (!StrUtil.isBlank(openId) && StrUtil.isBlank(user.getOpenId())) {
-        //     userService.updateOpenId(user.getTenantId(), user.getUserId(), openId);
-        // }
-        //
-        // // 设置用户学生证信息
-        // if (SystemConstants.USER_TYPE_STUDENT.equals(user.getUserType())) {
-        //     user.setCard(cardService.getByUserId(user.getUserId()));
-        // }
-        //
-        // // 签发TOKEN
-        // String accessToken = JwtUtil.buildToken(new JwtSubject(username, tenantId),
-        //         configProperties.getTokenExpireTime(), configProperties.getTokenKey());
-        // return success("登录成功", new LoginResult(accessToken, user));
-        return null;
+        String today = DatePattern.PURE_DATE_FORMAT.format(new DateTime());
+        String verifyCode = stringRedisTemplate.opsForValue().get(SysRedisConstants.LOGIN_CAPTCHA_VERIFY_CODE + today + param.getCodeKey());
+        if (StrUtil.isBlank(verifyCode)) {
+            return fail(LoginType.VERIFY_CODE_EXPIRED.getLabel(), null);
+        }
+        if (!verifyCode.equalsIgnoreCase(param.getCode())) {
+            return fail(LoginType.VERIFY_CODE_ERROR.getLabel(), null);
+        }
+        String username = param.getUsername();
+        SysUser sysUser = sysUserService.getSysUserByUsername(username);
+        if (sysUser == null) {
+            sysLoginRecordService.saveAsync(username, LoginType.ERROR.getValue(), LoginType.ERROR.getLabel(), request);
+            return fail(LoginType.ERROR.getLabel(), null);
+        }
+        if (AccountStatus.LOCKED.getValue().equals(sysUser.getAccountStatus())) {
+            sysLoginRecordService.saveAsync(username, LoginType.LOCK.getValue(), LoginType.LOCK.getLabel(), request);
+            return fail(LoginType.LOCK.getLabel(), null);
+        }
+        if (!sysUserService.comparePassword(sysUser.getPassword(), param.getPassword())) {
+            sysLoginRecordService.saveAsync(username, LoginType.PASSWORD_ERROR.getValue(), LoginType.PASSWORD_ERROR.getLabel(), request);
+            return fail(LoginType.PASSWORD_ERROR.getLabel(), null);
+        }
+        sysLoginRecordService.saveAsync(username, LoginType.SUCCESS.getValue(),null, request);
+        // 签发TOKEN
+        String accessToken = JwtUtil.buildToken(sysConfigProperties.getIssuer(),
+                new JwtSubject(username),
+                sysConfigProperties.getTokenExpireTime(),
+                sysConfigProperties.getBase64EncodedKey());
+        LoginResult result = new LoginResult();
+        result.setAccessToken(accessToken);
+        return success(LoginType.SUCCESS.getLabel(), result);
     }
 
 }

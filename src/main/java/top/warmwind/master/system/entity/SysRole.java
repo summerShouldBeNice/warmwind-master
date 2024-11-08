@@ -14,16 +14,16 @@ import java.io.Serializable;
  */
 @Data
 @TableName("sys_user")
-@Schema(name = "系统角色表")
+@Schema(description = "系统角色表")
 public class SysRole extends BaseEntity {
 
-    @Schema(name = "角色标识")
+    @Schema(description = "角色标识")
     private String roleCode;
 
-    @Schema(name = "角色名称")
+    @Schema(description = "角色名称")
     private String roleName;
 
-    @Schema(name = "备注")
+    @Schema(description = "备注")
     private String comments;
 
 }

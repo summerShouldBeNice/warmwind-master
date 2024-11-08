@@ -10,16 +10,16 @@ import lombok.Data;
  */
 @Data
 @TableName("sys_user_role")
-@Schema(name = "系统角色权限表")
+@Schema(description = "系统角色权限表")
 public class SysUserRole {
 
-    @Schema(name = "主键编号")
+    @Schema(description = "主键编号")
     private String id;
 
-    @Schema(name = "用户主键编号")
+    @Schema(description = "用户主键编号")
     private String userId;
 
-    @Schema(name = "角色主键编号")
+    @Schema(description = "角色主键编号")
     private String roleId;
 
 }
