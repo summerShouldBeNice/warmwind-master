@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import top.warmwind.master.core.exception.AccountRetrievalException;
 import top.warmwind.master.system.entity.SysRole;
 import top.warmwind.master.system.entity.SysUser;
+import top.warmwind.master.system.enums.AccountStatus;
 import top.warmwind.master.system.mapper.SysUserMapper;
 import top.warmwind.master.system.service.SysRoleService;
 import top.warmwind.master.system.service.SysUserService;
@@ -48,6 +49,9 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
         SysUser sysUser = getOne(wrapper);
         if (Objects.isNull(sysUser)) {
             throw new AccountRetrievalException("用户不存在");
+        }
+        if (!AccountStatus.LOCKED.getValue().equals(sysUser.getAccountStatus().getValue())) {
+            throw new AccountRetrievalException("账户已被锁定");
         }
         return sysUser;
     }
