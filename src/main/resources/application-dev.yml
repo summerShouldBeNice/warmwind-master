@@ -1,5 +1,5 @@
 # 开发环境配置
-
+ip: 127.0.0.1
 # 端口
 server:
   port: 8888
@@ -35,3 +35,10 @@ logging:
     root: INFO
   pattern:
     console: "%red(%d{HH:mm:ss.SSS})|%green(%level)|%magenta(%thread)|%yellow(%logger{32})|%green(line-%line)|%cyan(%X{traceId})|%m%n"
+
+# minio配置
+minio:
+  endpoint: http://${ip}:9000
+  accessKey: warmwind
+  secretKey: warmwind623
+  suffixs: .jpg,.png,.jpeg

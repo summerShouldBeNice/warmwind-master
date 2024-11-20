@@ -1,5 +1,8 @@
 package top.warmwind.master;
 
+import io.minio.BucketExistsArgs;
+import io.minio.MakeBucketArgs;
+import io.minio.MinioClient;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +31,19 @@ class MasterApplicationTests {
     private SysUserMapper sysUserMapper;
 
     @Autowired
+    private MinioClient minioClient;
+
+    @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @SneakyThrows
     @Test
     void contextLoads() {
-        System.out.println(bCryptPasswordEncoder.encode("warmwind623"));
+        boolean b = minioClient.bucketExists(BucketExistsArgs.builder().bucket("system").build());
+        System.out.println(b);
+
+        minioClient.makeBucket(MakeBucketArgs.builder().bucket("warmwind").build());
+        // System.out.println(bCryptPasswordEncoder.encode("warmwind623"));
         // List<SysUser> users1 = sysUserMapper.selectList(null);
         // users1.forEach(System.out::println);
 
