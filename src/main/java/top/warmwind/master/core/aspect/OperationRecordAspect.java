@@ -7,7 +7,6 @@ import cn.hutool.http.useragent.UserAgent;
 import cn.hutool.http.useragent.UserAgentUtil;
 import com.alibaba.fastjson2.JSON;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.aspectj.lang.JoinPoint;
@@ -54,7 +53,6 @@ public class OperationRecordAspect {
 
     @Before("operationRecord()")
     public void doBefore(JoinPoint joinPoint){
-        System.out.println(2111);
         startTime.set(System.currentTimeMillis());
     }
 

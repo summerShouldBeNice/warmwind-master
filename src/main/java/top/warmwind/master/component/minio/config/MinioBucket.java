@@ -9,7 +9,12 @@ package top.warmwind.master.component.minio.config;
 public class MinioBucket {
 
     /**
-     * minio 系统bucket
+     * minio system bucket
      */
-    public static final String MINIO_SYSTEM_BUCKET = "system_bucket";
+    public static final String MINIO_SYSTEM_BUCKET = "system";
+
+    /**
+     * minio warmwind bucket
+     */
+    public static final String MINIO_SYSTEM_WARMWIND = "warmwind";
 }

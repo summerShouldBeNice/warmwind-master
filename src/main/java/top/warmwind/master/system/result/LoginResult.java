@@ -6,6 +6,8 @@ import top.warmwind.master.system.entity.SysMenu;
 import top.warmwind.master.system.entity.SysRole;
 import top.warmwind.master.system.entity.SysUser;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -16,7 +18,9 @@ import java.util.List;
  */
 @Data
 @Schema(description = "登录结果")
-public class LoginResult {
+public class LoginResult implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     @Schema(description = "访问令牌")
     private String accessToken;

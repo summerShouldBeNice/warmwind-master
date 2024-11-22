@@ -42,3 +42,4 @@ minio:
   accessKey: warmwind
   secretKey: warmwind623
   suffixs: .jpg,.png,.jpeg
+  expiry: 600
