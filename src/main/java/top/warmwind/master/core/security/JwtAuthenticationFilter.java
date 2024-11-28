@@ -31,6 +31,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
+ * jwt权限认真过滤器
+ *
  * @author warmwind
  * @since 2024-11-01 下午4:50
  */
@@ -44,7 +46,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private SysRoleMenuService sysRoleMenuService;
 
     private SysLoginRecordService sysLoginRecordService;
-
 
     @Autowired
     public JwtAuthenticationFilter(SysConfigProperties sysConfigProperties,
