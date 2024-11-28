@@ -169,6 +169,7 @@
             <scope>runtime</scope>
         </dependency>
 
+        <!-- minio -->
         <dependency>
             <groupId>io.minio</groupId>
             <artifactId>minio</artifactId>
