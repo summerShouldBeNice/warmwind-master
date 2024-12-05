@@ -1,0 +1,123 @@
+<!-- 用户编辑弹窗 -->
+<template>
+  <a-modal
+    :width="680"
+    :visible="visible"
+    :confirm-loading="loading"
+    :title="isUpdate?'修改':'新建'"
+    :body-style="{paddingBottom: '8px'}"
+    @update:visible="updateVisible"
+    @ok="save">
+    <a-form
+      ref="form"
+      :model="form"
+      :rules="rules"
+      :label-col="{md: {span: 7}, sm: {span: 24}}"
+      :wrapper-col="{md: {span: 17}, sm: {span: 24}}">
+      <a-row :gutter="16">
+
+        <a-col :md="12" :sm="24" :xs="24">
+            <% for(field in table.fields) { %>
+                <% if("id" == field.propertyName || "createTime" == field.propertyName || "createBy" == field.propertyName || "updateTime" == field.propertyName || "deleted" == field.propertyName || "tenantId" == field.propertyName) { %>
+                    <% continue; %>
+                <% } %>
+                 <a-form-item label="${field.comment}:" name="${field.propertyName}">
+                     <a-input
+                       allow-clear
+                       :maxlength="20"
+                       placeholder="请输入${field.comment}"
+                       v-model:value="form.${field.propertyName}"/>
+                 </a-form-item>
+            <% } %>
+        </a-col>
+      </a-row>
+    </a-form>
+  </a-modal>
+</template>
+
+<script>
+//import validate from 'ele-admin-pro/packages/validate';
+
+export default {
+  name: '${entity}Edit',
+  emits: ['done', 'update:visible'],
+  props: {
+    // 弹窗是否打开
+    visible: Boolean,
+    // 修改回显的数据
+    data: Object
+  },
+  data() {
+    return {
+      // 表单数据
+      form: Object.assign({}, this.data),
+      // 表单验证规则
+      rules: {
+        <% for(field in table.fields) { %>
+            <% if("id" == field.propertyName || "createTime" == field.propertyName || "createBy" == field.propertyName || "updateTime" == field.propertyName || "deleted" == field.propertyName || "tenantId" == field.propertyName) { %>
+                <% continue; %>
+            <% } %>
+         ${field.propertyName}: [
+                   {required: true, message: '请输入${field.comment}', type: 'string', trigger: 'blur'}
+                 ],
+        <% } %>
+
+      },
+      // 提交状态
+      loading: false,
+      // 是否是修改
+      isUpdate: false,
+
+    };
+  },
+  watch: {
+    data() {
+      if (this.data) {
+        this.form = Object.assign({}, this.data);
+        this.isUpdate = true;
+      } else {
+        this.form = {};
+        this.isUpdate = false;
+      }
+      if (this.$refs.form) {
+        this.$refs.form.clearValidate();
+      }
+    }
+  },
+  mounted() {
+
+  },
+  methods: {
+    /* 保存编辑 */
+    save() {
+      this.$refs.form.validate().then(() => {
+        this.loading = true;
+        this.$http[this.isUpdate ? 'put' : 'post']('<% if(isNotEmpty(package.ModuleName)){ %>/${package.ModuleName}<% } %>/<% if(isNotEmpty(controllerMappingHyphenStyle)){ %>${controllerMappingHyphen}<% }else{ %>${table.entityPath}<% } %>', this.form).then(res => {
+          this.loading = false;
+          if (res.data.code === 0) {
+            this.$message.success(res.data.message);
+            if (!this.isUpdate) {
+              this.form = {};
+            }
+            this.updateVisible(false);
+            this.$emit('done');
+          } else {
+            this.$message.error(res.data.message);
+          }
+        }).catch(e => {
+          this.loading = false;
+          this.$message.error(e.message);
+        });
+      }).catch(() => {
+      });
+    },
+    /* 更新visible */
+    updateVisible(value) {
+      this.$emit('update:visible', value);
+    },
+  }
+}
+</script>
+
+<style scoped>
+</style>

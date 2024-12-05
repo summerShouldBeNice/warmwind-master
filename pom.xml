@@ -18,7 +18,7 @@
         <springdoc.version>2.6.0</springdoc.version>
         <druid.version>1.2.21</druid.version>
         <fasetjson2.version>2.0.52</fasetjson2.version>
-        <mybatis-plus-boot3.version>3.5.7</mybatis-plus-boot3.version>
+        <mybatis-plus-boot3.version>3.5.9</mybatis-plus-boot3.version>
         <fastjson2.extension.spring6>2.0.42</fastjson2.extension.spring6>
         <hutool.version>5.8.32</hutool.version>
         <redission.version>3.37.0</redission.version>
@@ -27,6 +27,7 @@
         <jjwt.impl.version>0.12.6</jjwt.impl.version>
         <jjwt.jackson.version>0.12.6</jjwt.jackson.version>
         <minio.version>8.4.3</minio.version>
+        <beetl.version>3.17.0.RELEASE</beetl.version>
     </properties>
     <dependencies>
 
@@ -122,6 +123,13 @@
             <version>${mybatis-plus-boot3.version}</version>
         </dependency>
 
+        <!-- mybatis-plus-generator -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-generator</artifactId>
+            <version>${mybatis-plus-boot3.version}</version>
+        </dependency>
+
         <!-- springdoc -->
         <dependency>
             <groupId>org.springdoc</groupId>
@@ -175,6 +183,14 @@
             <artifactId>minio</artifactId>
             <version>${minio.version}</version>
         </dependency>
+
+        <!-- 模板引擎, 用于邮件、代码生成等 -->
+        <dependency>
+            <groupId>com.ibeetl</groupId>
+            <artifactId>beetl</artifactId>
+            <version>${beetl.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>

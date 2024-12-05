@@ -1,10 +1,14 @@
 package top.warmwind.master;
 
+import com.googlecode.aviator.annotation.Ignore;
 import io.minio.BucketExistsArgs;
 import io.minio.MakeBucketArgs;
 import io.minio.MinioClient;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
+import org.redisson.RedissonTopic;
+import org.redisson.api.RTopic;
+import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -36,13 +40,16 @@ class MasterApplicationTests {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    @Autowired
+    private RedissonClient redissonClient;
+
     @SneakyThrows
     @Test
     void contextLoads() {
-        boolean b = minioClient.bucketExists(BucketExistsArgs.builder().bucket("system").build());
-        System.out.println(b);
-
-        minioClient.makeBucket(MakeBucketArgs.builder().bucket("warmwind").build());
+        // boolean b = minioClient.bucketExists(BucketExistsArgs.builder().bucket("system").build());
+        // System.out.println(b);
+        //
+        // minioClient.makeBucket(MakeBucketArgs.builder().bucket("warmwind").build());
         // System.out.println(bCryptPasswordEncoder.encode("warmwind623"));
         // List<SysUser> users1 = sysUserMapper.selectList(null);
         // users1.forEach(System.out::println);
@@ -52,6 +59,7 @@ class MasterApplicationTests {
 
         // SecretKey secretKey = JwtUtil.randomKey();
         // System.out.println(JwtUtil.encodeKey(secretKey));
+
 
         // JwtSubject jwtSubject = new JwtSubject("qjf1");
         // String s = JwtUtil.buildToken(sysConfigProperties.getIssuer(),
