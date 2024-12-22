@@ -47,7 +47,7 @@ public class SysUser extends BaseEntity implements UserDetails {
     private Integer emailVerifyStatus;
 
     @Schema(description = "用户账号状态")
-    private AccountStatus accountStatus;
+    private Integer accountStatus;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

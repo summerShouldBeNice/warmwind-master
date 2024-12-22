@@ -63,7 +63,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
         String accessToken = JwtUtil.getAccessToken(request);
         if (StrUtil.isNotBlank(accessToken)) {
-            // 解析token
             Claims claims = JwtUtil.parseToken(accessToken, sysConfigProperties.getBase64EncodedKey());
             JwtSubject jwtSubject = JwtUtil.getJwtSubject(claims, JwtSubject.class);
             SysUser user = sysUserService.getSysUserByUsername(jwtSubject.getUsername());

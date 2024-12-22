@@ -46,4 +46,10 @@ public class SysPublicController extends BaseController {
         return success(new CaptchaResult(specCaptcha.toBase64()));
     }
 
+    @Operation(summary = "测试接口")
+    @GetMapping("/test")
+    public ApiResult<?> test() {
+        return success("测试接口");
+    }
+
 }
