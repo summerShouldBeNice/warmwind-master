@@ -33,7 +33,7 @@ import java.util.List;
  */
 @Tag(name = "系统认证接口", description = "系统登录注册认证接口")
 @RestController
-@RequestMapping("/api/v1/sys/auth")
+@RequestMapping("${api}/sys/auth")
 public class SysAuthController extends BaseController {
 
     @Value("${spring.profiles.active}")
@@ -70,11 +70,11 @@ public class SysAuthController extends BaseController {
     @PostMapping("/login")
     public ApiResult<?> login(@RequestBody SysLoginParam param, HttpServletRequest request) {
         String today = DatePattern.PURE_DATE_FORMAT.format(new DateTime());
-        String verifyCode = stringRedisTemplate.opsForValue().get(SysRedisConstants.LOGIN_CAPTCHA_VERIFY_CODE + today + param.getCodeKey());
+        String verifyCode = stringRedisTemplate.opsForValue().get(SysRedisConstants.LOGIN_CAPTCHA + today + param.getCaptchaKey());
         if (StrUtil.isBlank(verifyCode)) {
             return fail(LoginType.VERIFY_CODE_EXPIRED.getLabel(), null);
         }
-        if (!verifyCode.equalsIgnoreCase(param.getCode())) {
+        if (!verifyCode.equalsIgnoreCase(param.getCaptcha())) {
             return fail(LoginType.VERIFY_CODE_ERROR.getLabel(), null);
         }
         String username = param.getUsername();

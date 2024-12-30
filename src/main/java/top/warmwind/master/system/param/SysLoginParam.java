@@ -26,10 +26,19 @@ public class SysLoginParam implements Serializable {
     @Schema(description = "密码")
     private String password;
 
+    @Schema(description = "手机号")
+    private String phone;
+
     @Schema(description = "验证码")
-    private String code;
+    private String captcha;
 
     @Schema(description = "验证码key")
-    private String codeKey;
+    private String captchaKey;
+
+    @Schema(description = "手机号验证码")
+    private String phoneCaptcha;
+
+    @Schema(description = "登录方式")
+    private Integer loginType;
 
 }

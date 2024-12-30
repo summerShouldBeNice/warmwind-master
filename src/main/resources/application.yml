@@ -1,7 +1,7 @@
 # 多环境配置
 spring:
   profiles:
-    active: dev
+    active: local
 
   jackson:
     time-zone: GMT+8

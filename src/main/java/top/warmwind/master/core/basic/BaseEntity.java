@@ -40,6 +40,6 @@ public class BaseEntity implements Serializable{
 
     @Schema(description = "删除标记 0否 1是")
     @TableLogic
-    private Integer isDeleted;
+    private Integer deleted;
 
 }

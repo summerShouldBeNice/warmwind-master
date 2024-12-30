@@ -41,15 +41,9 @@ public class SysPublicController extends BaseController {
     @GetMapping("/captcha/{key}")
     public ApiResult<?> captcha(@PathVariable("key") String key) {
         String today = DatePattern.PURE_DATE_FORMAT.format(new DateTime());
-        SpecCaptcha specCaptcha = new SpecCaptcha(130, 48, 5);
-        stringRedisTemplate.opsForValue().set(SysRedisConstants.LOGIN_CAPTCHA_VERIFY_CODE + today + key, specCaptcha.text().toLowerCase(), 5, TimeUnit.MINUTES);
+        SpecCaptcha specCaptcha = new SpecCaptcha(120, 40, 5);
+        stringRedisTemplate.opsForValue().set(SysRedisConstants.LOGIN_CAPTCHA + today + key, specCaptcha.text().toLowerCase(), 5, TimeUnit.MINUTES);
         return success(new CaptchaResult(specCaptcha.toBase64()));
-    }
-
-    @Operation(summary = "测试接口")
-    @GetMapping("/test")
-    public ApiResult<?> test() {
-        return success("测试接口");
     }
 
 }

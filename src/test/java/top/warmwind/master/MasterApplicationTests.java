@@ -43,10 +43,11 @@ class MasterApplicationTests {
     @SneakyThrows
     @Test
     void contextLoads() {
-        boolean b = minioClient.bucketExists(BucketExistsArgs.builder().bucket("system").build());
-        System.out.println(b);
-
-        minioClient.makeBucket(MakeBucketArgs.builder().bucket("warmwind").build());
+        System.out.println(bCryptPasswordEncoder.encode("2693387413"));
+        // boolean b = minioClient.bucketExists(BucketExistsArgs.builder().bucket("system").build());
+        // System.out.println(b);
+        //
+        // minioClient.makeBucket(MakeBucketArgs.builder().bucket("warmwind").build());
         // System.out.println(bCryptPasswordEncoder.encode("warmwind623"));
         // List<SysUser> users1 = sysUserMapper.selectList(null);
         // users1.forEach(System.out::println);

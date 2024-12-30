@@ -50,7 +50,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
         if (Objects.isNull(sysUser)) {
             throw new AccountRetrievalException("用户不存在");
         }
-        if (!AccountStatus.LOCKED.getValue().equals(sysUser.getAccountStatus().getValue())) {
+        if (AccountStatus.LOCKED.getValue().equals(sysUser.getAccountStatus())) {
             throw new AccountRetrievalException("账户已被锁定");
         }
         return sysUser;

@@ -12,7 +12,7 @@
         WHERE
             sur.user_id = #{sysUserId}
         AND
-            sr.is_deleted = 0
+            sr.deleted = 0
     </select>
 
 </mapper>

@@ -19,12 +19,12 @@
             INNER JOIN
                 sys_role_menu srm ON sur.role_id = srm.role_id
             WHERE
-                sr.is_deleted = 0
+                sr.deleted = 0
                 AND
                 sur.user_id = #{sysUserId}
             ) AS sub ON sm.id = sub.menu_id
         AND
-            sm.is_deleted = 0
+            sm.deleted = 0
     </select>
 
 </mapper>

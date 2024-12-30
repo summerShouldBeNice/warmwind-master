@@ -16,5 +16,5 @@ public class SysRedisConstants {
     /**
      * 登录图形验证码redis键常量
      */
-    public static final String LOGIN_CAPTCHA_VERIFY_CODE = "login-captcha-verify-code:";
+    public static final String LOGIN_CAPTCHA = "login-captcha:";
 }
